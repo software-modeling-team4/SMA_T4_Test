@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="RealTimeTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2019-05-21T10:04:39" hostname="LAPTOP-9B23GGR0" time="0.016">
+  <properties/>
+  <testcase name="showRealTime" classname="RealTimeTest" time="0.001"/>
+  <testcase name="nextSection" classname="RealTimeTest" time="0.012"/>
+  <testcase name="calculateTime" classname="RealTimeTest" time="0.0"/>
+  <testcase name="decreaseTime" classname="RealTimeTest" time="0.001"/>
+  <testcase name="setSecond" classname="RealTimeTest" time="0.0"/>
+  <testcase name="getCurrSection" classname="RealTimeTest" time="0.0"/>
+  <testcase name="increaseTime" classname="RealTimeTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
