@@ -9,7 +9,7 @@ public class RealTime implements Mode {
         this.realTime = Calendar.getInstance();
         // Calendar Month start 0 => 0: January, 1: February, 2: March, ... , 11: December
         this.realTime.clear();
-        this.currSection = 1; // 0: Second, 1: Minute, 2: Hour, 3: Day, 4: Month, 5: Year
+        this.currSection = 0; // 0: Second, 1: Minute, 2: Hour, 3: Day, 4: Month, 5: Year
     }
 
     // Necessary getter and setter

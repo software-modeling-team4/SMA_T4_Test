@@ -9,14 +9,14 @@ public class RealTimeTest {
     @Test
     public void getCurrSection(){
         RealTime realTime = new RealTime();
-        assertEquals(1, realTime.getCurrSection());
+        assertEquals(0, realTime.getCurrSection());
     }
 
     @Test
     public void nextSection() {
         RealTime realTime = new RealTime();
         realTime.nextSection();
-        assertEquals(2, realTime.getCurrSection());
+        assertEquals(1, realTime.getCurrSection());
     }
 
     @Test
