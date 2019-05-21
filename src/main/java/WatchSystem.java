@@ -77,9 +77,25 @@ public class WatchSystem {
             }
 
             else if(this.menu[i] instanceof Alarm){
+                ((Alarm) this.menu[i]).realTimeTaskAlarm();
+                if(this.currMode == i)
+                    ((Alarm)this.menu[i]).showAlarm();
                 continue;
             }
 
+            else if(this.menu[i] instanceof Worldtime){
+                ((Worldtime) this.menu[i]).realTimeTaskWorldtime();
+                if(this.currMode == i)
+                    ((Worldtime)this.menu[i]).showWorldTime();
+                continue;
+            }
+
+            else if(this.menu[i] instanceof Sun){
+                ((Sun) this.menu[i]).realTimeTaskSun();
+                if(this.currMode == i)
+                    ((Sun)this.menu[i]).showSun();
+                continue;
+            }
             else{
                 System.out.println("{Exception}[WatchSystem][realTimeTask] NotValidModeException");
                 return ;
