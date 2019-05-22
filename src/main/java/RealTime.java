@@ -101,6 +101,7 @@ public class RealTime implements Mode {
     public void setSecond(int i){ this.realTime.set(Calendar.MILLISECOND, i * 1000); }
 
     public void calculateTime(){ this.realTime.add(Calendar.MILLISECOND, 10); }
+    public void requestChangeType(){}
     public void showRealTime(){
         System.out.printf("[RealTime] %d YEAR %d MONTH %d DAY %d H %d M %d S %d\n",
                 this.realTime.get(Calendar.YEAR),

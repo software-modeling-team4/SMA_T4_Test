@@ -90,12 +90,10 @@ public class AlarmTest {
     @Test
     public void requestNextAlarm() {
         Alarm alarm = new Alarm();
-        assertEquals(0, alarm.getCurrAlarm());
-        alarm.requestNextAlarm();
+        alarm.setCurrAlarm(3); // [currAlarm] Point last alarm
+        alarm.requestNextAlarm(); // [currAlarm] 3 -> 0
+        alarm.requestNextAlarm(); // [currAlarm] 0 -> 1
         assertEquals(1, alarm.getCurrAlarm());
-        alarm.setCurrAlarm(3);
-        alarm.requestNextAlarm();
-        assertEquals(0, alarm.getCurrAlarm());
     }
 
     @Test

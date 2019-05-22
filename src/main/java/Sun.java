@@ -46,9 +46,7 @@ public class Sun implements Mode {
     public void showSun(){
 
     }
-    private Calendar[] calculateSun(){
-
-    }
+    //private Calendar[] calculateSun(){}
 
 
 }

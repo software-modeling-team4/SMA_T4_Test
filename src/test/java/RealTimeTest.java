@@ -35,7 +35,6 @@ public class RealTimeTest {
         assertEquals(1, realTime.requestRealTime().get(Calendar.MINUTE));
         assertEquals(0, realTime.requestRealTime().get(Calendar.HOUR));
 
-
         // 2: Max Hour Increase Test
         realTime.nextSection(); // 1: Minute -> 2: HOUR
         realTime.setRealTime(Calendar.HOUR_OF_DAY, 23);
@@ -45,7 +44,6 @@ public class RealTimeTest {
 
         assertEquals(1, realTime.requestRealTime().get(Calendar.HOUR));
         assertEquals(1, realTime.requestRealTime().get(Calendar.DATE));
-
 
         // 3: Max Date Increase Test
         realTime.nextSection(); // 2: HOUR -> 3: DATE
@@ -83,7 +81,6 @@ public class RealTimeTest {
         assertEquals(58, realTime.requestRealTime().get(Calendar.MINUTE));
         assertEquals(0, realTime.requestRealTime().get(Calendar.HOUR_OF_DAY));
 
-
         // 2: Min Hour Decrease Test
         realTime.nextSection(); // 1: Minute -> 2: HOUR
         realTime.setRealTime(Calendar.HOUR_OF_DAY, 0);
@@ -93,7 +90,6 @@ public class RealTimeTest {
 
         assertEquals(22, realTime.requestRealTime().get(Calendar.HOUR_OF_DAY));
         assertEquals(1, realTime.requestRealTime().get(Calendar.DATE));
-
 
         // 3: Min Date Decrease Test
         realTime.nextSection(); // 2: HOUR -> 3: DATE
@@ -116,13 +112,12 @@ public class RealTimeTest {
         assertEquals(Calendar.NOVEMBER, realTime.requestRealTime().get(Calendar.MONTH));
         assertEquals(1970, realTime.requestRealTime().get(Calendar.YEAR));
 
-
         // 5: Min Year Decrease Test
         realTime.nextSection(); // 4: MONTH -> 5: YEAR
         realTime.setRealTime(Calendar.YEAR, 1971);
 
         realTime.decreaseTime(); // 1971 -> 1970
-        realTime.decreaseTime(); // 1970 -> 1970
+        realTime.decreaseTime(); // 1970 -> 1970 => Not Changed
 
         assertEquals(1970, realTime.requestRealTime().get(Calendar.YEAR));
     }

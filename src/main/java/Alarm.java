@@ -66,6 +66,7 @@ public class Alarm implements Mode {
     public int getCurrSection() { return this.currSection; }
 
 
+    // Operations
     public void realTimeTaskAlarm(){
         for(Calendar alarm : this.alarm){
             if((alarm.getTimeInMillis() - this.realTime.requestRealTime().getTimeInMillis()) == 0){
