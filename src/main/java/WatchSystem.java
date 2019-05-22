@@ -10,12 +10,13 @@ public class WatchSystem {
 
     public static void main(String[] args) {
       SeparateSection test = new SeparateSection();
-      test.test();
-    //    WatchSystem run = new WatchSystem();
+      System.out.println(test.getClass().getTypeName());
+      WatchSystem run = new WatchSystem();
+      run.realTimeTask();
     }
 
     public WatchSystem() {
-        TimeThread thread = new TimeThread(this);
+        //TimeThread thread = new TimeThread(this);
 
         //System_GUI system_gui = new System_GUI(this);
         //Time timeLive = new Time(55, 59, 23);
@@ -24,11 +25,11 @@ public class WatchSystem {
         this.menu.add(new TimeSetting((RealTime)this.menu.get(0)));
         this.menu.add(new Stopwatch());
         this.menu.add(new Timer());
-        this.menu.add(new Alarm());
+        this.menu.add(new Alarm((RealTime)this.menu.get(0)));
 
         this.currMode = 0; // [currMode] 0: Always RealTime
         this.maxCnt = 4;
-        thread.run();
+        //thread.run();
     }
 
     public void pressShowType() {
@@ -40,57 +41,45 @@ public class WatchSystem {
     public void realTimeTask() {
         for(int i = 0; i <= this.maxCnt; i++){
             Mode menu = this.menu.get(i);
-            if(menu instanceof RealTime){
-                ((RealTime)menu).calculateTime();
-                if(this.currMode == i)
-                    ((RealTime)menu).showRealTime();
-                continue;
-            }
+            switch(menu.getClass().getTypeName()) {
+                case "RealTime":
+                    ((RealTime) menu).calculateTime();
+                    if (this.currMode == i) ((RealTime) menu).showRealTime();
+                    break;
 
-            else if(menu instanceof TimeSetting){
-                ((TimeSetting)menu).realTimeTaskTimeSetting();
-                if(this.currMode == i)
-                    ((TimeSetting)menu).getRealTime().showRealTime();
-                continue;
-            }
+                case "TimeSetting":
+                    ((TimeSetting) menu).realTimeTaskTimeSetting();
+                    if (this.currMode == i) ((TimeSetting) menu).getRealTime().showRealTime();
+                    break;
 
-            else if(menu instanceof Stopwatch){
-                ((Stopwatch) menu).realTimeTaskStopwatch();
-                if(this.currMode == i)
-                    ((Stopwatch)menu).showStopwatch();
-                continue;
-            }
+                case "Stopwatch":
+                    ((Stopwatch) menu).realTimeTaskStopwatch();
+                    if (this.currMode == i) ((Stopwatch) menu).showStopwatch();
+                    break;
 
-            else if(menu instanceof Timer){
-                ((Timer) menu).realTimeTimerTask();
-                if(this.currMode == i)
-                    ((Timer)menu).showTimer();
-                continue;
-            }
+                case "Timer":
+                    ((Timer) menu).realTimeTimerTask();
+                    if (this.currMode == i) ((Timer) menu).showTimer();
+                    break;
 
-            else if(menu instanceof Alarm){
-                ((Alarm) menu).realTimeTaskAlarm();
-                if(this.currMode == i)
-                    ((Alarm)menu).showAlarm();
-                continue;
-            }
+                case "Alarm":
+                    ((Alarm) menu).realTimeTaskAlarm();
+                    if (this.currMode == i) ((Alarm) menu).showAlarm();
+                    break;
 
-            else if(menu instanceof Worldtime){
-                ((Worldtime) menu).realTimeTaskWorldtime();
-                if(this.currMode == i)
-                    ((Worldtime)menu).showWorldTime();
-                continue;
-            }
+                case "Worldtime":
+                    ((Worldtime) menu).realTimeTaskWorldtime();
+                    if (this.currMode == i) ((Worldtime) menu).showWorldTime();
+                    break;
 
-            else if(menu instanceof Sun){
-                ((Sun) menu).realTimeTaskSun();
-                if(this.currMode == i)
-                    ((Sun)menu).showSun();
-                continue;
-            }
-            else{
-                System.out.println("{Exception}[WatchSystem][realTimeTask] NotValidModeException");
-                return ;
+                case "Sun":
+                    ((Sun) menu).realTimeTaskSun();
+                    if (this.currMode == i) ((Sun) menu).showSun();
+                    break;
+
+                default:
+                    System.out.println("{Exception}[WatchSystem][realTimeTask] NotValidModeException");
+                    break;
             }
         }
     }
@@ -100,10 +89,12 @@ public class WatchSystem {
             this.currMode = 0;
     }
 
+    /*
     public void callNextMode(){
         if(++this.currMode == this.maxCnt)
             this.currMode = 0; // 0: RealTime
     }
+    */
 
     // Mode Setting
     public void enterModeSetting(){}
