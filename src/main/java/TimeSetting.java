@@ -13,6 +13,7 @@ public class TimeSetting implements Mode {
     public void requestResetSecond(){ this.realTime.setSecond(0); }
     public void realTimeTaskTimeSetting(){
 
+        System.out.println("[TimeSetting]");
     }
 
     // Getters and Setters

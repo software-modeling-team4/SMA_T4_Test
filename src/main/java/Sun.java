@@ -29,6 +29,8 @@ public class Sun implements Mode {
 
     public void realTimeTaskSun(){
 
+        System.out.println("[Sun]");
+
     }
 
     public void requestSetRise(){
