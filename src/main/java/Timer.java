@@ -19,6 +19,7 @@ public class Timer implements Mode {
         this.currSection = 0;
     }
 
+    // Getters and Setters
     public Calendar getTimerTime(){ return this.timerTime; }
     public void setTimerTime(Calendar timerTime){ this.timerTime = timerTime; }
     public Calendar getRsvTime(){ return this.rsvTime; }
@@ -27,6 +28,7 @@ public class Timer implements Mode {
     public void setStatus(int status) { this.status = status; }
     public int getCurrSection(){ return this.currSection; }
     public void setCurrSection(int currSection){ this.currSection = currSection; }
+
 
     public void requestTimerTime(){
         if(this.status == 0) // 0: Stopped -> 2: Setting
@@ -38,19 +40,19 @@ public class Timer implements Mode {
     }
     public void requestIncreaseTimerTimeSection(){
         switch(this.currSection){
-            case 0 :
-                this.rsvTime.add(Calendar.MILLISECOND, 1000);
-                if(this.rsvTime.get(Calendar.MILLISECOND) == 0)
+            case 0 : // 0: Second
+                this.rsvTime.add(Calendar.SECOND, 1);
+                if(this.rsvTime.get(Calendar.SECOND) == 0)
                     this.rsvTime.add(Calendar.MINUTE, -1);
                 break;
 
-            case 1:
+            case 1: // 1: Minute
                 this.rsvTime.add(Calendar.MINUTE, 1);
                 if(this.rsvTime.get(Calendar.MINUTE) == 0)
                     this.rsvTime.add(Calendar.HOUR_OF_DAY, -1);
                 break;
 
-            case 2:
+            case 2: // 2: Hour
                 this.rsvTime.add(Calendar.HOUR_OF_DAY, 1);
                 if(this.rsvTime.get(Calendar.HOUR_OF_DAY) == 0)
                     this.rsvTime.add(Calendar.DATE, -1);
@@ -62,20 +64,22 @@ public class Timer implements Mode {
     }
     public void requestDecreaseTimerTimeSection(){
         switch(this.currSection){
-            case 0 :
+            case 0 : // Second
                 this.rsvTime.add(Calendar.SECOND, -1);
                 if(this.rsvTime.get(Calendar.SECOND) == 59)
                     this.rsvTime.add(Calendar.MINUTE, 1);
                 break;
 
-            case 1:
+            case 1: // Minute
                 this.rsvTime.add(Calendar.MINUTE, -1);
                 if(this.rsvTime.get(Calendar.MINUTE) == 59)
                     this.rsvTime.add(Calendar.HOUR, 1);
                 break;
 
-            case 2:
-                this.rsvTime.add(Calendar.HOUR, -1);
+            case 2: // Hour
+                this.rsvTime.add(Calendar.HOUR_OF_DAY, -1);
+                if(this.rsvTime.get(Calendar.HOUR_OF_DAY) == 23)
+                    this.rsvTime.add(Calendar.DATE, 1);
                 break;
 
             default:
@@ -106,17 +110,20 @@ public class Timer implements Mode {
     public void ringOff(){}
     private void startRingingTimer(){}
     public void realTimeTimerTask(){
-        if(this.status == 1){
+        if(this.status == 1){ // 1: Continued
             this.timerTime.add(Calendar.MILLISECOND, -10);
             if(this.timerTime.getTimeInMillis() == 0){
+                this.startRingingTimer(); // Ring
                 this.changeStatus(0);
-                // Beep
             }
         }
 
     }
     public void showTimer(){}
     public void requestExitSetTimerTime(){
-        this.changeStatus(0);
+        if(this.status == 2){ // [Status] 2: Setting
+            this.changeStatus(0); // [Status] 2: Setting -> 0: Stopped
+            this.currSection = 0; // [CurrSection] 0: Second -> Setting Section initialization
+        }
     }
 }
