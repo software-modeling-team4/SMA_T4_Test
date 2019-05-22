@@ -15,7 +15,7 @@ public class Alarm implements Mode {
     private int currSection; // 0: Minute, 1: Hour, 2: Frequency_Second, 3: Frequency_Minute, 4: Count, 5: Bell
     private int currAlarm;
 
-    public Alarm(){
+    public Alarm(RealTime realTime){
         this.reservated = new Calendar[4];
         for(int i = 0; i < 4; i++){
             this.reservated[i] = Calendar.getInstance();
@@ -40,7 +40,7 @@ public class Alarm implements Mode {
 
         this.status = 0;
         this.currAlarm = 0;
-        this.realTime = null;
+        this.realTime = realTime;
     }
 
     // Getters and Setters
@@ -68,14 +68,15 @@ public class Alarm implements Mode {
 
     // Operations
     public void realTimeTaskAlarm(){
-        /*for(Calendar alarm : this.alarm){
-            if((alarm.getTimeInMillis() - this.realTime.requestRealTime().getTimeInMillis()) == 0){
-                // Beep
+        System.out.println("[Alarm]");
+        for(int i = 0; i < 4; i++){
+            if(this.alarmState[i] == true){
+                if((this.alarm[i].getTimeInMillis() - this.realTime.requestRealTime().getTimeInMillis()) == 0){
+                    // Beep
+                }
             }
-        }*/
 
-
-
+        }
     }
     public void requestSettingAlarm(){
         if(this.status == 0)

@@ -50,6 +50,8 @@ public class Worldtime implements Mode{
     }
 
     public void realTimeTaskWorldtime(){
+
+        System.out.println("[Worldtime]");
         this.currTime = this.realTime.requestRealTime();
         this.worldTime.set(Calendar.MILLISECOND, this.currTime.get(Calendar.MILLISECOND));
         this.worldTime.set(
