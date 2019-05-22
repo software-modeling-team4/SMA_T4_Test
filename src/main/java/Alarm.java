@@ -68,11 +68,11 @@ public class Alarm implements Mode {
 
     // Operations
     public void realTimeTaskAlarm(){
-        for(Calendar alarm : this.alarm){
+        /*for(Calendar alarm : this.alarm){
             if((alarm.getTimeInMillis() - this.realTime.requestRealTime().getTimeInMillis()) == 0){
                 // Beep
             }
-        }
+        }*/
 
 
 

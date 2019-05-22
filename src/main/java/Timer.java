@@ -116,6 +116,7 @@ public class Timer implements Mode {
                 this.startRingingTimer(); // Ring
                 this.changeStatus(0);
             }
+
         }
 
     }
