@@ -8,13 +8,16 @@ public class RealTime implements Mode {
     public RealTime(){
         this.realTime = Calendar.getInstance();
         // Calendar Month start 0 => 0: January, 1: February, 2: March, ... , 11: December
-        this.realTime.clear();
-        this.currSection = 1; // 0: Second, 1: Minute, 2: Hour, 3: Day, 4: Month, 5: Year
+        this.realTime.clear(); // Initialized to 1970. 1. 1 00:00:00.000
+        this.currSection = 0; // 0: Second, 1: Minute, 2: Hour, 3: Day, 4: Month, 5: Year
     }
 
     // Necessary getter and setter
-    public Calendar requestRealTime(){ return this.realTime; }
     public int getCurrSection() { return this.currSection; }
+    public void setCurrSection(int currSection){ this.currSection = currSection; }
+    public void setRealTime(int section, int value){ this.realTime.set(section, value); }
+
+    public Calendar requestRealTime(){ return this.realTime; }
 
     public void nextSection(){
         if(++this.currSection == 6) // Over value
