@@ -24,6 +24,15 @@ public class Stopwatch implements Mode {
     }
     */
 
+    // Getters and Setters
+    public Calendar getStpTime() { return stpTime; }
+    public void setStpTime(Calendar stpTime) { this.stpTime = stpTime; }
+    public Calendar getSplitTime() { return splitTime; }
+    public void setSplitTime(Calendar splitTime) { this.splitTime = splitTime; }
+    public int getStatus() { return status; }
+    public void setStatus(int status) { this.status = status; }
+
+    // Operations
     public void realTimeTaskStopwatch(){
         if(this.status == 1) // 1: Continued
             this.stpTime.add(Calendar.MILLISECOND, 10);
@@ -34,6 +43,7 @@ public class Stopwatch implements Mode {
     public void requestSplitStopwatch(){
         if(this.status == 1){ // 1: Continued
             this.splitTime.set(Calendar.MILLISECOND, this.stpTime.get(Calendar.MILLISECOND));
+            this.splitTime.set(Calendar.SECOND, this.stpTime.get(Calendar.SECOND));
             this.splitTime.set(Calendar.MINUTE, this.stpTime.get(Calendar.MINUTE));
             this.splitTime.set(Calendar.HOUR_OF_DAY, this.stpTime.get(Calendar.HOUR_OF_DAY));
         }
@@ -50,11 +60,4 @@ public class Stopwatch implements Mode {
 
     }
 
-    // Getters and Setters
-    public Calendar getStpTime() { return stpTime; }
-    public void setStpTime(Calendar stpTime) { this.stpTime = stpTime; }
-    public Calendar getSplitTime() { return splitTime; }
-    public void setSplitTime(Calendar splitTime) { this.splitTime = splitTime; }
-    public int getStatus() { return status; }
-    public void setStatus(int status) { this.status = status; }
 }
