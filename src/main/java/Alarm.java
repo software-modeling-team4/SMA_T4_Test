@@ -17,21 +17,21 @@ public class Alarm implements Mode {
 
     public Alarm(){
         this.reservated = new Calendar[4];
-        for(Calendar cal : this.reservated){
-            cal = Calendar.getInstance();
-            cal.clear();
+        for(int i = 0; i < 4; i++){
+            this.reservated[i] = Calendar.getInstance();
+            this.reservated[i].clear();
         }
 
         this.alarm = new Calendar[4];
-        for(Calendar cal : this.alarm){
-            cal = Calendar.getInstance();
-            cal.clear();
+        for(int i = 0; i < 4; i++){
+            this.alarm[i] = Calendar.getInstance();
+            this.alarm[i].clear();
         }
 
         this.frequency = new Calendar[4];
-        for(Calendar cal : this.frequency){
-            cal = Calendar.getInstance();
-            cal.clear();
+        for(int i = 0; i < 4; i++){
+            this.frequency[i] = Calendar.getInstance();
+            this.frequency[i].clear();
         }
 
         this.repeat = new int[]{0,0,0,0};
@@ -45,7 +45,9 @@ public class Alarm implements Mode {
 
     // Getters and Setters
     public Calendar[] getReservated() { return reservated; }
+    public Calendar getReservated(int i){ return this.reservated[i]; }
     public void setReservated(Calendar[] reservated) { this.reservated = reservated; }
+    public void setReservated(Calendar reservated){this.reservated[this.currAlarm] = reservated;}
     public Calendar[] getFrequency() { return frequency; }
     public Calendar getFrequency(int i){ return frequency[i]; }
     public void setFrequency(Calendar[] frequency) { this.frequency = frequency; }
@@ -61,6 +63,7 @@ public class Alarm implements Mode {
     public boolean getAlarmCurrAlarmStatus(){return this.alarmState[this.currAlarm];}
     public int getCurrAlarm(){ return this.currAlarm; }
     public void setCurrAlarm(int i) { this.currAlarm = i; }
+    public int getCurrSection() { return this.currSection; }
 
 
     public void realTimeTaskAlarm(){
@@ -119,13 +122,13 @@ public class Alarm implements Mode {
                 switch(this.currSection){
                     case 2: // 2: Frequency_Second
                         this.frequency[this.currAlarm].add(Calendar.SECOND, 1);
-                        if(this.reservated[this.currAlarm].get(Calendar.SECOND) == 0)
-                            this.reservated[this.currAlarm].add(Calendar.MINUTE, -1);
+                        if(this.frequency[this.currAlarm].get(Calendar.SECOND) == 0)
+                            this.frequency[this.currAlarm].add(Calendar.MINUTE, -1);
                         break;
                     case 3: // 3: Frequency_Minute
                         this.frequency[this.currAlarm].add(Calendar.MINUTE, 1);
-                        if(this.reservated[this.currAlarm].get(Calendar.MINUTE) == 11)
-                            this.reservated[this.currAlarm].add(Calendar.MINUTE, 0);
+                        if(this.frequency[this.currAlarm].get(Calendar.MINUTE) == 11)
+                            this.frequency[this.currAlarm].add(Calendar.MINUTE, 0);
                         break;
 
                     case 4: // 4: Count
