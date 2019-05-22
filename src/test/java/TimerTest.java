@@ -142,6 +142,7 @@ public class TimerTest {
         Timer timer = new Timer();
         timer.getRsvTime().set(1970, 1-1, 1, 10, 30, 12);
         timer.getRsvTime().set(Calendar.MILLISECOND, 0);
+
         timer.requestResetTimer();
         assertEquals(timer.getRsvTime().getTimeInMillis(), timer.getTimerTime().getTimeInMillis());
 
@@ -149,7 +150,7 @@ public class TimerTest {
         timer.realTimeTimerTask();
         assertEquals(timer.getRsvTime().getTimeInMillis() - 10, timer.getTimerTime().getTimeInMillis());
 
-        while(timer.getTimerTime().getTimeInMillis() != 0)
+        while(timer.getTimerTime().getTimeInMillis() > -32400000)
             timer.realTimeTimerTask();
 
         assertEquals(0, timer.getStatus()); // Timer Expired

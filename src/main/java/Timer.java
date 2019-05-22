@@ -112,7 +112,7 @@ public class Timer implements Mode {
     public void realTimeTimerTask(){
         if(this.status == 1){ // 1: Continued
             this.timerTime.add(Calendar.MILLISECOND, -10);
-            if(this.timerTime.getTimeInMillis() == 0){
+            if(this.timerTime.getTimeInMillis() == -32400000){
                 this.startRingingTimer(); // Ring
                 this.changeStatus(0);
             }
